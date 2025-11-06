@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosso Lanche</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Nosso Lanche</h1>
+  </header>
+
+  <nav>
+    <button onclick="mostrarCategoria('hamburguer')">🍔 Hambúrgueres</button>
+    <button onclick="mostrarCategoria('hamburguerg')">🍔 Hambúrgueres Gourmet</button>
+    <button onclick="mostrarCategoria('batata')">🍟 Batatas</button>
+    <button onclick="mostrarCategoria('bebida')">🥤 Bebidas</button>
+    <button onclick="mostrarCategoria('macaxeira')">🥣 Macaxeira</button>
+    <button onclick="mostrarCategoria('cuscuz')">🌽 Cuscuz</button>
+    <button onclick="mostrarCategoria('pastelespeciais')"> 🥟 Pastel Especiais</button>
+    <button onclick="mostrarCategoria('pastel')"> 🥟 Pastel</button>
+    <button onclick="mostrarCategoria('baguete')"> 🥖 Baguete</button>
+    <button onclick="mostrarCategoria('acrescimo')"> + Acrecimos</button>
+  </nav>
+
+  <main>
+    <section id="cardapio"></section>
+
+    <aside id="carrinho">
+      <h2>🛒 Carrinho</h2>
+      <ul id="itens-carrinho"></ul>
+      <p id="total">Total: R$ 0,00</p>
+
+      <div class="dados-cliente">
+        <input type="text" id="nomeCliente" placeholder="Seu nome" required>
+        <input type="text" id="enderecoCliente" placeholder="Endereço para entrega" required>
+        <label for="tipoPedido">Tipo de Pedido:</label>
+<select id="tipoPedido" onchange="atualizarTipoPedido()">
+  <option value="entrega">Entrega</option>
+  <option value="retirada">Retirada</option>
+</select>
+
+<div id="divBairro">
+  <label for="bairroCliente">Bairro:</label>
+  <select id="bairroCliente" onchange="atualizarCarrinho()">
+    <option value="">Selecione o bairro</option>
+    <option value="7.00">Abel Barbosa - R$ 7,00</option>
+    <option value="6.00">Alves de Souza - R$ 6,00</option>
+    <option value="7.00">Amaury Alves de Menezes - R$ 7,00</option>
+    <option value="8.00">Balneário Prainha - R$ 8,00</option>
+    <option value="10.50">Barroca - R$ 10,50</option>
+    <option value="6.50">Boi e a Cobra - R$ 6,50</option>
+    <option value="7.50">Caminho dos Lagos - R$ 7,50</option>
+    <option value="7.00">Capuxú - R$ 7,00</option>
+    <option value="7.00">Casquetinho - R$ 7,00</option>
+    <option value="7.50">Centenário - R$ 7,50</option>
+    <option value="6.00">Centro - R$ 6,00</option>
+    <option value="10.00">Chácara Regina - R$ 10,00</option>
+    <option value="7.50">Clériston Andrade - R$ 7,50</option>
+    <option value="7.50">Clube dos Velhinhos - R$ 7,50</option>
+    <option value="7.00">CPA - R$ 7,00</option>
+    <option value="7.50">Detran - R$ 7,50</option>
+    <option value="7.50">Fazenda Chesf - R$ 7,50</option>
+    <option value="7.00">General Dutra - R$ 7,00</option>
+    <option value="7.50">Jardim Aeroporto - R$ 7,50</option>
+    <option value="7.50">Jardim Bahia - R$ 7,50</option>
+    <option value="9.50">Moxotó Bahia - R$ 9,50</option>
+    <option value="6.00">Nossa Senhora de Fátima - R$ 6,00</option>
+    <option value="10.00">Oliveira Brito - R$ 10,00</option>
+    <option value="7.00">Oliveira Lopes - R$ 7,00</option>
+    <option value="7.00">Panorama - R$ 7,00</option>
+    <option value="8.00">Parque Belvedere - R$ 8,00</option>
+    <option value="10.00">Pedra Comprida - R$ 10,00</option>
+    <option value="6.00">Perpétuo Socorro - R$ 6,00</option>
+    <option value="7.50">Prainha - R$ 7,50</option>
+    <option value="8.00">Prainha Ayrton Senna - R$ 8,00</option>
+    <option value="7.50">Sal Torrado - R$ 7,50</option>
+    <option value="7.50">São Vicente - R$ 7,50</option>
+    <option value="7.50">Senhor do Bonfim - R$ 7,50</option>
+    <option value="8.00">Setor Industrial - R$ 8,00</option>
+    <option value="8.00">Siriema 1 - R$ 8,00</option>
+    <option value="8.50">Siriema 2 - R$ 8,50</option>
+    <option value="9.00">Siriema 3 - R$ 9,00</option>
+    <option value="7.50">Tropical - R$ 7,50</option>
+    <option value="10.00">Verde Perto - R$ 10,00</option>
+    <option value="7.00">Verdinho - R$ 7,00</option>
+    <option value="7.00">Vila Corró - R$ 7,00</option>
+    <option value="7.50">Vila Dom Mário Zanetta - R$ 7,50</option>
+    <option value="6.00">Vila Militar - R$ 6,00</option>
+    <option value="6.50">Vila Nobre - R$ 6,50</option>
+  </select>
+</div>
+
+
+        <textarea id="obsCliente" placeholder="Observações (ex: sem cebola, troco, etc)"></textarea>
+
+        <select id="pagamentoCliente" onchange="mostrarCampoTroco()">
+          <option value="">Forma de pagamento</option>
+          <option value="PIX">PIX</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão">Cartão</option>
+        </select>
+
+        <!-- 🟢 Campo de troco (só aparece se for dinheiro) -->
+        <div id="campoTroco" style="display: none;">
+          <input type="text" id="trocoCliente" placeholder="Precisa de troco? Para quanto?">
+        </div>
+      </div>
+
+      <button id="finalizar">Finalizar pedido no WhatsApp</button>
+    </aside>
+  </main>
+
+  <script>
+    function mostrarCampoTroco() {
+      const pagamento = document.getElementById('pagamentoCliente').value;
+      const campoTroco = document.getElementById('campoTroco');
+      campoTroco.style.display = pagamento === 'Dinheiro' ? 'block' : 'none';
+    }
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
